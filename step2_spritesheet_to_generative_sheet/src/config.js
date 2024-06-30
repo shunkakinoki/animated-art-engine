@@ -40,14 +40,17 @@ let layerConfigurations = [
     growEditionSizeTo: totalSupply,
     namePrefix: "", // Use to add a name to Metadata `name:`
     layersOrder: [
-      { name: "Background" },
-      { name: "Landscape" },
+      { name: "background" },
+      { name: "drink" },
       {
-        name: "Ball",
+        name: "murpie",
       },
       {
-        name: "Hat",
+        name: "spoon",
       },
+      {
+        name: "accessory",
+      }
     ],
   },
 ]
@@ -64,56 +67,56 @@ const background = {
 };
 
 
-const layerConfigurationsZIndex = [
-  {
-    growEditionSizeTo: totalSupply,
-    namePrefix: "Bouncing Ball Z-Index Example:",
-    layersOrder: [
-      { name: "Background" },
-      { name: "Landscape" },
-      { name: "Ball" },
-    ],
-  },
-]
+// const layerConfigurationsZIndex = [
+//   {
+//     growEditionSizeTo: totalSupply,
+//     namePrefix: "Bouncing Ball Z-Index Example:",
+//     layersOrder: [
+//       { name: "background" },
+//       { name: "Landscape" },
+//       { name: "Ball" },
+//     ],
+//   },
+// ]
 
 // This will create totalSupply - 1 common balls, and 1 rare ball
 // They will be in order but you can shuffleLayerConfigurations
-const layerConfigurationsGrouping = [
-  {
-    growEditionSizeTo: totalSupply - 1,
-    namePrefix: "Bouncing Ball Common:",
-    layersOrder: [
-      { name: "Background" },
-      { name: "Landscape" },
-      { name: "Common Ball", trait: "Ball" },
-      { name: "Common Hat", trait: "Hat" },
-    ],
-  },
-  {
-    growEditionSizeTo: totalSupply,
-    namePrefix: "Bouncing Ball Rare:",
-    layersOrder: [
-      { name: "Background" },
-      { name: "Landscape" },
-      { name: "Rare Ball", trait: "Ball" },
-      { name: "Rare Hat", trait: "Hat" },
-    ],
-  },
-]
+// const layerConfigurationsGrouping = [
+//   {
+//     growEditionSizeTo: totalSupply - 1,
+//     namePrefix: "Bouncing Ball Common:",
+//     layersOrder: [
+//       { name: "background" },
+//       { name: "Landscape" },
+//       { name: "Common Ball", trait: "Ball" },
+//       { name: "Common Hat", trait: "Hat" },
+//     ],
+//   },
+//   {
+//     growEditionSizeTo: totalSupply,
+//     namePrefix: "Bouncing Ball Rare:",
+//     layersOrder: [
+//       { name: "background" },
+//       { name: "Landscape" },
+//       { name: "Rare Ball", trait: "Ball" },
+//       { name: "Rare Hat", trait: "Hat" },
+//     ],
+//   },
+// ]
 
-const layerConfigurationsIfThen = [
-  {
-    growEditionSizeTo: totalSupply,
-    namePrefix: "", // Use to add a name to Metadata `name:`
-    layersOrder: [
-      { name: "Background" },
-      { name: "Landscape" },
-      {
-        name: "Ball",
-      },
-    ],
-  },
-]
+// const layerConfigurationsIfThen = [
+//   {
+//     growEditionSizeTo: totalSupply,
+//     namePrefix: "", // Use to add a name to Metadata `name:`
+//     layersOrder: [
+//       { name: "background" },
+//       { name: "Landscape" },
+//       {
+//         name: "Ball",
+//       },
+//     ],
+//   },
+// ]
 
 const handler = {
   get: function (target, name) {
@@ -123,9 +126,9 @@ const handler = {
 
 const layerConfigurationMapping = new Proxy({
   "layers": layerConfigurations,
-  "layers_z_index": layerConfigurationsZIndex,
-  "layers_grouping": layerConfigurationsGrouping,
-  "layers_if_then": layerConfigurationsIfThen,
+  // "layers_z_index": layerConfigurationsZIndex,
+  // "layers_grouping": layerConfigurationsGrouping,
+  // "layers_if_then": layerConfigurationsIfThen,
 }, handler);
 
 layerConfigurations = layerConfigurationMapping[layersFolder];
