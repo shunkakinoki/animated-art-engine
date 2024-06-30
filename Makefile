@@ -1,5 +1,5 @@
 first_time_setup:
-	python3 -m pip install --upgrade Pillow && pip3 install -r requirements.txt
+	python3 -m pip install --upgrade Pillow && pip install -r requirements.txt
 	cd step2_spritesheet_to_generative_sheet && npm i && cd ..
 
 step1:
