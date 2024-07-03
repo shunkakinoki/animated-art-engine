@@ -46,11 +46,11 @@ let layerConfigurations = [
         name: "murpie",
       },
       {
-        name: "spoon",
+        name: "accessory",
       },
       {
-        name: "accessory",
-      }
+        name: "spoon",
+      },
     ],
   },
 ]
@@ -181,8 +181,38 @@ const forcedCombinations = {
  * clean-filename: trait-value override pairs. Wrap filenames with spaces in quotes.
  */
 const traitValueOverrides = {
-  // Helmet: "Space Helmet",
-  // "gold chain": "GOLDEN NECKLACE",
+  // Accessory
+  "blackSunglasses": "Black Sunglasses",
+  "blueBow": "Blue Bow",
+  "capHat": "Cap Hat",
+  "partyHat": "Party Hat",
+  "propellerHat": "Propeller Hat",
+  "ratrowaveSunglasses": "Retrowave Sunglasses",
+  "redBow": "Red Bow",
+  // Background
+  "brown": "Brown",
+  "green": "Green",
+  "plaid": "Plaid",
+  // Drink
+  "beer": "Beer",
+  "dreamy": "Dreamy",
+  "melonSoda": "Melon Soda",
+  "milk": "Milk",
+  "sparkingTea": "Sparking Tea",
+  "strawberrySoda": "Strawberry Soda",
+  "tropical": "Tropical",
+  // Murpie
+  "black&whiteMurpie": "Black & White Murpie",
+  "blueMurpie": "Blue Murpie",
+  "greenMurpie": "Green Murpie",
+  "rainbowMurpie": "Rainbow Murpie",
+  "redMurpie": "Red Murpie",
+  "whiteMurpie": "White Murpie",
+  "yellowMurpie": "Yellow Murpie",
+  //Spoon
+  "rainbow": "Rainbow Spoon",
+  "silver": "Silver Spoon",
+  "wood": "Wooden Spoon",
 };
 
 const extraMetadata = {};
