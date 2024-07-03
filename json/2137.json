@@ -1,0 +1,32 @@
+{
+  "dna": "8966a590fcea5c9d5216fd17a5657a9a7fcf3c44663005815eba363d93a7d7af",
+  "name": "#2137",
+  "description": "Poppin NFT",
+  "image": "ar://pHUDt-ijvU_b_bP3onzzVwCqxetYnRenONRnTIHsO28/2137.gif",
+  "imageName": "2137.gif",
+  "edition": 2137,
+  "date": 1720001158718,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Brown"
+    },
+    {
+      "trait_type": "Drink",
+      "value": "Dreamy"
+    },
+    {
+      "trait_type": "Murpie",
+      "value": "White Murpie"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "Cap Hat"
+    },
+    {
+      "trait_type": "Spoon",
+      "value": "Silver Spoon"
+    }
+  ],
+  "compiler": "Jalagar Animated Art Engine"
+}
