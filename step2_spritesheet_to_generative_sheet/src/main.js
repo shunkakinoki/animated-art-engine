@@ -53,16 +53,16 @@ const DNA_DELIMITER = "*";
 const zflag = /(z-?\d*,)/;
 
 const buildSetup = () => {
-  if (fs.existsSync(buildDir)) {
-    fs.rmdirSync(buildDir, { recursive: true });
-  }
-  if (fs.existsSync(outputDir)) {
-    fs.rmdirSync(outputDir, { recursive: true });
-  }
-  fs.mkdirSync(buildDir);
-  fs.mkdirSync(outputDir);
-  fs.mkdirSync(path.join(buildDir, "/json"));
-  fs.mkdirSync(path.join(outputDir, "/images"));
+  // if (fs.existsSync(buildDir)) {
+  //   fs.rmdirSync(buildDir, { recursive: true });
+  // }
+  // if (fs.existsSync(outputDir)) {
+  //   fs.rmdirSync(outputDir, { recursive: true });
+  // }
+  // fs.mkdirSync(buildDir);
+  // fs.mkdirSync(outputDir);
+  // fs.mkdirSync(path.join(buildDir, "/json"));
+  // fs.mkdirSync(path.join(outputDir, "/images"));
 };
 
 const getRarityWeight = (_path) => {
@@ -791,8 +791,9 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
   let editionCount = 1; //used for the growEditionSize while loop, not edition number
   let failedCount = 0;
   let abstractedIndexes = [];
+
   for (
-    let i = startIndex;
+    let i = 2709;
     i <=
     startIndex +
     layerConfigurations[layerConfigurations.length - 1].growEditionSizeTo - 1; // TODO hack just for now to get shuffling working
@@ -800,13 +801,31 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
   ) {
     abstractedIndexes.push(i);
   }
-  if (shuffleLayerConfigurations) {
-    abstractedIndexes = shuffle(abstractedIndexes);
-  }
+  
   dnaList = Array(abstractedIndexes.length);
+
+  // Read json from 0.json to 2709.json and add to list of dna
+  for (let i = 0; i < 2709; i++) {
+    const dna = JSON.parse(fs.readFileSync(`../build/json/${i}.json`)).dna;
+    console.log("Adding dna: ", dna)
+    dnaList[i] = dna;
+  }
+
+  // Add all dna to set
+  for (let i = 0; i < dnaList.length; i++) {
+    dnaSet.add(dnaList[i]);
+  }
+
+  // Log the size of the dna set
+  console.log("DNA Set size: ", dnaSet.size);
+  
+  // if (shuffleLayerConfigurations) {
+  //   abstractedIndexes = shuffle(abstractedIndexes);
+  // }
   debugLogs
     ? console.log("Editions left to create: ", abstractedIndexes)
     : null;
+
   while (layerConfigIndex < layerConfigurations.length) {
     const layers = layersSetup(
       layerConfigurations[layerConfigIndex].layersOrder
@@ -815,7 +834,9 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
       editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo
     ) {
       let newDna = createDna(layers);
-      if (isDnaUnique(dnaSet, newDna)) {
+      let newDnaHash = hash(newDna);
+      // console.log("New DNA: ", newDnaHash)
+      if (isDnaUnique(dnaSet, newDnaHash)) {
         let results = constructLayerToDna(newDna, layers);
         debugLogs ? console.log("DNA:", newDna.split(DNA_DELIMITER)) : null;
         let loadedElements = [];
@@ -826,7 +847,7 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
         sortZIndex(allImages).forEach((layer) => {
           loadedElements.push(loadLayerImg(layer));
         });
-
+        
         await Promise.all(loadedElements).then((renderObjectArray) => {
           const layerData = {
             newDna,
@@ -838,7 +859,8 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
           outputFiles(abstractedIndexes, layerData, metadataList, attributesList, canvas);
         });
         const filteredDna = filterDNAOptions(newDna);
-        dnaSet.add(filteredDna);
+        dnaSet.add(hash(newDna));
+        // dnaSet.add(filteredDna);
         dnaList[abstractedIndexes[0] - startIndex] = filteredDna;
         editionCount++;
         abstractedIndexes.shift();

@@ -250,7 +250,7 @@ def main(
 ):
     print("********Starting step 1: Converting pngs to spritesheets********")
 
-    setup_directory(OUTPUT_DIRECTORY)
+    # setup_directory(OUTPUT_DIRECTORY)
 
     if use_batches:
         print(f"Creating layers for batch: {batch_number}")
