@@ -793,7 +793,7 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
   let abstractedIndexes = [];
 
   for (
-    let i = 3035;
+    let i = 3052;
     i <=
     startIndex +
     layerConfigurations[layerConfigurations.length - 1].growEditionSizeTo - 1; // TODO hack just for now to get shuffling working
@@ -805,7 +805,7 @@ const startCreating = async (storedDNA, overrideHeight = null, overrideWidth = n
   dnaList = Array(abstractedIndexes.length);
 
   // Read json from 0.json to 2709.json and add to list of dna
-  for (let i = 0; i < 3035; i++) {
+  for (let i = 0; i < 3052; i++) {
     const dna = JSON.parse(fs.readFileSync(`../build/json/${i}.json`)).dna;
     console.log("Adding dna: ", dna)
     dnaList[i] = dna;
