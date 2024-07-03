@@ -40,16 +40,16 @@ let layerConfigurations = [
     growEditionSizeTo: totalSupply,
     namePrefix: "", // Use to add a name to Metadata `name:`
     layersOrder: [
-      { name: "background" },
-      { name: "drink" },
+      { name: "Background" },
+      { name: "Drink" },
       {
-        name: "murpie",
+        name: "Murpie",
       },
       {
-        name: "accessory",
+        name: "Accessory",
       },
       {
-        name: "spoon",
+        name: "Spoon",
       },
     ],
   },
